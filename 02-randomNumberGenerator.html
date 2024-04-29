@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=`, initial-scale=1.0">
+    <title>Generate Random Number</title>
+</head>
+<body>
+    <h1>Generate Random Number</h1>
+    <button id="generate">Generate</button>
+    <p id="timing"></p>
+    <p id="result"></p>
+    <script>
+        const generateBtn = document.getElementById('generate');
+        const result = document.getElementById('result');
+        const timeMsg = document.getElementById('timing');
+        let delay = 5;
+
+        // Generate a random number between 1 and 100
+        const generateRandomNumber = () => {
+            //print remaing time.
+            const printRemainingTime = () => {
+                delay--; 
+                timeMsg.textContent = `result show in: ${delay -1}`;
+            };
+            //setTineout display random number
+            setTimeout(() => {
+                const randomNumber = Math.floor(Math.random() * 100) + 1;
+                result.textContent = `Generated number: ${randomNumber}`;
+                generateBtn.disabled = true;
+            }, delay * 1000)
+
+            for (let i = 1; i < delay; i++) {
+            setTimeout(printRemainingTime, i * 1000);
+            }
+            generateBtn.removeEventListener('click', generateRandomNumber);
+        };
+        // Add an event listener to the generate button
+        generateBtn.addEventListener('click', generateRandomNumber);
+    </script>
+</body>
+</html>

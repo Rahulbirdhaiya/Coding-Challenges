@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=`, initial-scale=1.0">
+    <title>Reverse String with Timeout</title>
+</head>
+<body style="background-color: #e3e3e3;">
+   <h1>Reverse String on Set Timeout()</h1> 
+   <input type="text" name="String" id="str">
+   <button id="btn">submit</button>
+   <h2 id="result"></h2>
+</body>
+<script>
+    const revStrInput = document.getElementById('str');
+    const resultPrint = document.getElementById('result')
+    const btn = document.getElementById('btn')
+   
+    btn.addEventListener('click', (e) => {
+        const revrseInput = setTimeout(() => {
+        const reversedStr = [...revStrInput.value].reverse().join("").toUpperCase();
+        resultPrint.innerHTML = reversedStr;
+    }, 2000); 
+    });
+</script>
+</html>

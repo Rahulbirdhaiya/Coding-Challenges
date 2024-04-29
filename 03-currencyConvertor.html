@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Currency Converter</title>
+</head>
+<body>
+    <h1>Items List</h1>
+    <input type="radio" id="list1" name="item" value="">
+    <label for="list1" id="label1"></label><br>
+    <input type="radio" id="list2" name="item" value="">
+    <label for="list2" id="label2"></label><br>
+    <input type="radio" id="list3" name="item" value="">
+    <label for="list3" id="label3"></label><br>
+
+    <script>
+        const item1 = {
+            Name: 'Samsung Laptop',
+            Price: 900,
+            Year: 2024
+        };
+        const item2 = {
+            Name: 'Apple Iphone',
+            Price: 999,
+            Year: 2023
+        };
+        const item3 = {
+            Name: 'Sony Bravia TV',
+            Price: 1500,
+            Year: 2022
+        };
+
+        const items = [item1, item2, item3];
+
+        // Function to convert USD to INR
+        function convertToINR(priceUSD) {
+            // For demonstration purposes, assuming 1 USD = 74.50 INR
+            const conversionRate = 83.35;
+            return priceUSD * conversionRate;
+        }
+
+        // Iterate over the items and update each radio button and its corresponding label
+        items.forEach((item, index) => {
+            const radioElement = document.getElementById(`list${index + 1}`);
+            const labelElement = document.getElementById(`label${index + 1}`);
+            // Set the value of the radio button to the item object
+            radioElement.value = JSON.stringify(item); 
+            // Set the label text
+            labelElement.textContent = `${item.Name} - Price: $${item.Price} - Year: ${item.Year}`; 
+            radioElement.addEventListener('change', () => {
+                if (radioElement.checked) {
+                    const selectedValue = JSON.parse(radioElement.value);
+                    // Convert the price to INR
+                    selectedValue.Price = convertToINR(selectedValue.Price); 
+                    labelElement.textContent = `${selectedValue.Name} - Price: ₹${selectedValue.Price.toFixed(2)} - Year: ${selectedValue.Year}`; // Update the label text with the converted price
+                }
+            });
+        });
+    </script>
+</body>
+</html>
